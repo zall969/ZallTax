@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZALLTAX - Belajar Pajak, Semudah Klik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home" class="nav-link">🚀 ZALLTAX</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#simulasi" class="nav-link">Simulasi Pajak</a></li>
+                <li><a href="#riwayat" class="nav-link">Riwayat</a></li>
+                <li><a href="#edukasi" class="nav-link">Edukasi</a></li>
+            </ul>
+            <div class="nav-extra">
+                <button id="darkModeToggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="app-root">
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Belajar Pajak, Semudah Klik.</h1>
+                <p>ZALLTAX membantu Anda memahami dan mensimulasikan cara mengisi formulir Coretax secara mudah, tanpa kebingungan dan istilah rumit.</p>
+                <div class="cta-buttons">
+                    <a href="#simulasi" class="btn btn-primary nav-link">Mulai Simulasi Pajak</a>
+                    <a href="#edukasi" class="btn btn-secondary nav-link">Pelajari Dasar Pajak</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulasi" class="page">
+            <h2>🧾 Halaman Simulasi Pajak</h2>
+            <div class="simulation-container">
+                <div class="simulation-form">
+                    <h3>Masukkan Data Anda</h3>
+                    <div class="form-group">
+                        <label for="nama">Nama Wajib Pajak</label>
+                        <input type="text" id="nama" placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div class="form-group">
+                        <label for="penghasilanBruto">Penghasilan Bruto (per Tahun)</label>
+                        <input type="number" id="penghasilanBruto" placeholder="Contoh: 80000000">
+                    </div>
+                    <div class="form-group">
+                        <label for="ptkp">Status PTKP (Penghasilan Tidak Kena Pajak)</label>
+                        <select id="ptkp">
+                            <option value="54000000">TK/0 - Tidak Kawin, Tanpa Tanggungan</option>
+                            <option value="58500000">K/0 - Kawin, Tanpa Tanggungan</option>
+                            <option value="63000000">K/1 - Kawin, 1 Tanggungan</option>
+                            <option value="67500000">K/2 - Kawin, 2 Tanggungan</option>
+                            <option value="72000000">K/3 - Kawin, 3 Tanggungan</option>
+                        </select>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="hitungPajak" class="btn btn-primary">🧮 Hitung Pajak</button>
+                        <button id="simpanSimulasi" class="btn btn-success" disabled>💾 Simpan Simulasi</button>
+                        <button id="resetData" class="btn btn-danger">🔄 Reset Data</button>
+                    </div>
+                </div>
+
+                <div class="simulation-output">
+                    <h3>Hasil Simulasi Anda</h3>
+                    <div id="output-container">
+                        <p>Hasil perhitungan akan muncul di sini setelah Anda menekan tombol "Hitung Pajak".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="riwayat" class="page">
+            <h2>📂 Riwayat Simulasi</h2>
+            <p>Semua simulasi yang Anda simpan akan muncul di sini.</p>
+            <table id="riwayat-table">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Tanggal</th>
+                        <th>Pajak Terutang (Rp)</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="riwayat-tbody">
+                    </tbody>
+            </table>
+            <button id="hapusRiwayat" class="btn btn-danger">🗑️ Hapus Semua Riwayat</button>
+        </section>
+
+        <section id="edukasi" class="page">
+            <h2>📘 Edukasi Pajak</h2>
+            <div class="edukasi-content">
+                <article>
+                    <h3>Apa itu Coretax?</h3>
+                    <p>Core Tax Administration System (CTAS) atau Coretax adalah sistem teknologi informasi yang disediakan oleh Direktorat Jenderal Pajak (DJP) untuk mengotomatisasi proses administrasi perpajakan. Tujuannya adalah untuk menciptakan sistem yang lebih efisien, akurat, dan terintegrasi bagi Wajib Pajak.</p>
+                </article>
+                <article>
+                    <h3>Langkah-langkah Mengisi Formulir Pajak (Secara Umum)</h3>
+                    <ol>
+                        <li>Siapkan dokumen pendukung (bukti potong, daftar harta, dll).</li>
+                        <li>Hitung total penghasilan bruto Anda dalam setahun.</li>
+                        <li>Kurangkan dengan biaya pengurang (seperti biaya jabatan) dan PTKP.</li>
+                        <li>Hasilnya adalah Penghasilan Kena Pajak (PKP).</li>
+                        <li>Kalikan PKP dengan tarif pajak progresif yang berlaku.</li>
+                    </ol>
+                </article>
+                <article>
+                    <h3>Kesalahan Umum Wajib Pajak Pemula</h3>
+                    <ul>
+                        <li>Tidak melaporkan semua sumber penghasilan.</li>
+                        <li>Salah menghitung Penghasilan Tidak Kena Pajak (PTKP).</li>
+                        <li>Terlambat melaporkan SPT Tahunan.</li>
+                    </ul>
+                </article>
+                <small>Sumber: Diadaptasi dari materi edukasi Direktorat Jenderal Pajak (DJP).</small>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="app.js"></script>
+</html>
+
+/* General Styling */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --border-color: #444;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding-top: 70px; /* Space for fixed header */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header and Navigation */
+header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 70px;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+}
+
+#darkModeToggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Page Structure */
+.page {
+    display: none;
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Hero Section (Home) */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+.hero h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 20px auto;
+}
+.cta-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+.btn-secondary {
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+.btn-success { background-color: var(--success-color); color: white; }
+.btn-danger { background-color: var(--danger-color); color: white; }
+
+/* Simulation Page */
+.simulation-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.simulation-form, .simulation-output {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+#output-container h4 { color: var(--primary-color); }
+#output-container pre { background-color: var(--bg-color); padding: 15px; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word; }
+
+
+/* History Page */
+#riwayat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+#riwayat-table th, #riwayat-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+#riwayat-table th {
+    background-color: var(--bg-color);
+    font-weight: 600;
+}
+.action-btn {
+    cursor: pointer;
+    margin-right: 10px;
+    background: none;
+    border: none;
+}
+
+/* Edukasi Page */
+.edukasi-content article {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- UTILITIES & HELPERS ---
+    const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+
+    // --- PAGE NAVIGATION (SPA) ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+
+    function showPage(pageId) {
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId)?.classList.add('active');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if(link.getAttribute('href') === `#${pageId}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = e.target.getAttribute('href').substring(1);
+            showPage(pageId);
+        });
+    });
+
+    // Initial page load
+    const initialPage = window.location.hash ? window.location.hash.substring(1) : 'home';
+    showPage(initialPage);
+
+    // --- DARK MODE TOGGLE ---
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+
+    // --- SIMULASI PAJAK LOGIC ---
+    const hitungPajakBtn = document.getElementById('hitungPajak');
+    const simpanSimulasiBtn = document.getElementById('simpanSimulasi');
+    const resetDataBtn = document.getElementById('resetData');
+    const outputContainer = document.getElementById('output-container');
+    let currentSimulationResult = null;
+
+    hitungPajakBtn.addEventListener('click', () => {
+        const nama = document.getElementById('nama').value;
+        const penghasilanBruto = parseFloat(document.getElementById('penghasilanBruto').value) || 0;
+        const ptkp = parseFloat(document.getElementById('ptkp').value);
+
+        if (!nama || penghasilanBruto <= 0) {
+            alert('Nama dan Penghasilan Bruto harus diisi dengan benar!');
+            return;
+        }
+
+        // Perhitungan Pajak PPh 21 (sesuai aturan UU HPP)
+        const biayaJabatan = Math.min(penghasilanBruto * 0.05, 6000000);
+        const penghasilanNeto = penghasilanBruto - biayaJabatan;
+        const pkp = Math.max(0, penghasilanNeto - ptkp); // Penghasilan Kena Pajak
+        let pph21 = 0;
+
+        // Tarif Progresif
+        if (pkp > 0) {
+            if (pkp <= 60000000) {
+                pph21 = pkp * 0.05;
+            } else if (pkp <= 250000000) {
+                pph21 = (60000000 * 0.05) + ((pkp - 60000000) * 0.15);
+            } else if (pkp <= 500000000) {
+                pph21 = (60000000 * 0.05) + (190000000 * 0.15) + ((pkp - 250000000) * 0.25);
+            } else if (pkp <= 5000000000) {
+                pph21 = (60000000 * 0.05) + (190000000 * 0.15) + (250000000 * 0.25) + ((pkp - 500000000) * 0.30);
+            } else {
+                pph21 = (60000000 * 0.05) + (190000000 * 0.15) + (250000000 * 0.25) + (4500000000 * 0.30) + ((pkp - 5000000000) * 0.35);
+            }
+        }
+
+        currentSimulationResult = {
+            nama: nama,
+            pajak: Math.round(pph21),
+            tanggal: new Date().toISOString().split('T')[0]
+        };
+
+        // Tampilkan hasil
+        outputContainer.innerHTML = `
+            <h4>Hasil Perhitungan untuk ${nama}</h4>
+            <pre>
+Penghasilan Bruto Tahunan: ${formatRupiah(penghasilanBruto)}
+Biaya Jabatan (5%, max 6jt): ${formatRupiah(biayaJabatan)}
+Penghasilan Neto: ${formatRupiah(penghasilanNeto)}
+PTKP: ${formatRupiah(ptkp)}
+--------------------------------------------------
+Penghasilan Kena Pajak (PKP): ${formatRupiah(pkp)}
+<b>Pajak Terutang (PPh 21): ${formatRupiah(Math.round(pph21))}</b>
+            </pre>
+            <p><i>Ini adalah simulasi berdasarkan tarif UU HPP.</i></p>
+        `;
+        simpanSimulasiBtn.disabled = false;
+    });
+
+    simpanSimulasiBtn.addEventListener('click', () => {
+        if (!currentSimulationResult) return;
+        const riwayat = JSON.parse(localStorage.getItem('zalltaxRiwayat')) || [];
+        riwayat.push(currentSimulationResult);
+        localStorage.setItem('zalltaxRiwayat', JSON.stringify(riwayat));
+        alert('Simulasi berhasil disimpan!');
+        simpanSimulasiBtn.disabled = true;
+        renderRiwayat(); // Update tabel riwayat
+    });
+    
+    resetDataBtn.addEventListener('click', () => {
+        document.getElementById('nama').value = '';
+        document.getElementById('penghasilanBruto').value = '';
+        outputContainer.innerHTML = '<p>Hasil perhitungan akan muncul di sini.</p>';
+        simpanSimulasiBtn.disabled = true;
+        currentSimulationResult = null;
+    });
+
+    // --- RIWAYAT SIMULASI LOGIC ---
+    const riwayatTbody = document.getElementById('riwayat-tbody');
+    const hapusRiwayatBtn = document.getElementById('hapusRiwayat');
+
+    function renderRiwayat() {
+        const riwayat = JSON.parse(localStorage.getItem('zalltaxRiwayat')) || [];
+        riwayatTbody.innerHTML = '';
+        if (riwayat.length === 0) {
+            riwayatTbody.innerHTML = `<tr><td colspan="4">Belum ada riwayat simulasi.</td></tr>`;
+        } else {
+            riwayat.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.nama}</td>
+                    <td>${item.tanggal}</td>
+                    <td>${formatRupiah(item.pajak)}</td>
+                    <td>
+                        <button class="action-btn" data-index="${index}" title="Hapus">🗑️</button>
+                    </td>
+                `;
+                riwayatTbody.appendChild(row);
+            });
+        }
+    }
+    
+    riwayatTbody.addEventListener('click', (e) => {
+        if(e.target.classList.contains('action-btn')) {
+            const index = e.target.dataset.index;
+            let riwayat = JSON.parse(localStorage.getItem('zalltaxRiwayat')) || [];
+            riwayat.splice(index, 1);
+            localStorage.setItem('zalltaxRiwayat', JSON.stringify(riwayat));
+            renderRiwayat();
+        }
+    });
+
+    hapusRiwayatBtn.addEventListener('click', () => {
+        if(confirm('Apakah Anda yakin ingin menghapus semua riwayat?')) {
+            localStorage.removeItem('zalltaxRiwayat');
+            renderRiwayat();
+        }
+    });
+    
+    // Panggil saat halaman riwayat dibuka
+    document.querySelector('a[href="#riwayat"]').addEventListener('click', renderRiwayat);
+    if(initialPage === 'riwayat') renderRiwayat();
+
+});
